@@ -1,0 +1,11 @@
+[package]
+name = "MicroInsuranceSystem"
+version = "0.0.0"
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir = "aptos-move/framework/aptos-framework", rev = "mainnet" }
+
+[addresses]
+my_addrx = "2abb1ab290cb828323bf6da71a3f36011d59cd7aa576474f19dbcae50521e056"
+sys_addrx="0xca10b0176c34f9a8315589ff977645e04497814e9753d21f7d7e7c3d83aa7b57"
+std = "0x1"
