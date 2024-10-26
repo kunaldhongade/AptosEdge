@@ -7,7 +7,7 @@ Welcome to **AptosEdge**, a powerful and secure multisig wallet built on the **A
 ## 🔗 Links
 
 - **Live Demo**: [AptosEdge](https://aptosedge.vercel.app)
-- **Smart Contract Explorer**: [Aptos Explorer](https://explorer.aptoslabs.com/account/0x339c4c822be7e7662b1f8ec7b61e51659fae8616121c890e35ef202f5f89b739/modules/code/AptosEdgeMultisig?network=testnet)
+- **Smart Contract Explorer**: [Aptos Explorer](https://explorer.aptoslabs.com/account/0xc7b9758f78ffd5f9f49517c286522b078b5396fdc151abfe34266316abdbe88f/modules/code/AptosEdgeMultisig?network=testnet)
 
 ---
 
