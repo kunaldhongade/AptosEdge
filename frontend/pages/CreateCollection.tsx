@@ -3,7 +3,7 @@ import { LaunchpadHeader } from "@/components/LaunchpadHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { MODULE_ADDRESS } from "@/constants";
+import { MODULE_ADDRESS, MODULE_NAME } from "@/constants";
 import { aptosClient } from "@/utils/aptosClient";
 import { InputViewFunctionData } from "@aptos-labs/ts-sdk";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
@@ -63,7 +63,7 @@ export function CreateCollection() {
       const transaction = await signAndSubmitTransaction({
         sender: account?.address,
         data: {
-          function: `${MODULE_ADDRESS}::MicroInsuranceSystem::create_policy`,
+          function: `${MODULE_ADDRESS}::${MODULE_NAME}::create_policy`,
           functionArguments: [values.description, premiumAMT, values.yearly, maxClaimable, values.type_of_policy],
         },
       });
@@ -91,7 +91,7 @@ export function CreateCollection() {
       const transaction = await signAndSubmitTransaction({
         sender: account?.address,
         data: {
-          function: `${MODULE_ADDRESS}::MicroInsuranceSystem::verify_claim`,
+          function: `${MODULE_ADDRESS}::${MODULE_NAME}::verify_claim`,
           functionArguments: [values.policy_id, values.customer],
         },
       });
@@ -119,7 +119,7 @@ export function CreateCollection() {
       const transaction = await signAndSubmitTransaction({
         sender: account?.address,
         data: {
-          function: `${MODULE_ADDRESS}::MicroInsuranceSystem::payout_claim`,
+          function: `${MODULE_ADDRESS}::${MODULE_NAME}::payout_claim`,
           functionArguments: [values.policy_id],
         },
       });
@@ -146,7 +146,7 @@ export function CreateCollection() {
     try {
       const WalletAddr = account?.address;
       const payload: InputViewFunctionData = {
-        function: `${MODULE_ADDRESS}::MicroInsuranceSystem::view_policies_by_creator`,
+        function: `${MODULE_ADDRESS}::${MODULE_NAME}::view_policies_by_creator`,
         functionArguments: [WalletAddr],
       };
 
