@@ -7,7 +7,7 @@ Welcome to **AptosEdge**, a powerful and secure multisig wallet built on the **A
 ## 🔗 Links
 
 - **Live Demo**: [AptosEdge](https://aptosedge.vercel.app)
-- **Smart Contract Explorer**: [Aptos Explorer](https://explorer.aptoslabs.com/account/0x5859138f765c8bb7b3753c7bf3881c862dc0aad787becc4335b4a72bdbfbecc0/modules/code/AptosEdgeMultisig?network=testnet)
+- **Smart Contract Explorer**: [Aptos Explorer](https://explorer.aptoslabs.com/account/0x339c4c822be7e7662b1f8ec7b61e51659fae8616121c890e35ef202f5f89b739/modules/code/AptosEdgeMultisig?network=testnet)
 
 ---
 
@@ -26,7 +26,7 @@ Welcome to **AptosEdge**, a powerful and secure multisig wallet built on the **A
 Ensure you have the following installed:
 
 - **Node.js** (v16 or higher)
-- **npm** or **yarn** 
+- **npm** or **yarn**
 - **Aptos Wallet** (e.g., Petra Wallet) for blockchain interactions
 
 ---
@@ -57,7 +57,7 @@ Create a `.env` file in the project root and add the following configuration:
 ```bash
 PROJECT_NAME=AptosEdgeMultisig
 VITE_APP_NETWORK=testnet
-VITE_MODULE_ADDRESS=0x5859138f765c8bb7b3753c7bf3881c862dc0aad787becc4335b4a72bdbfbecc0
+VITE_MODULE_ADDRESS=0x339c4c822be7e7662b1f8ec7b61e51659fae8616121c890e35ef202f5f89b739
 ```
 
 Replace `0xYOUR_SMART_CONTRACT_ADDRESS` with the actual deployed address.
@@ -77,17 +77,17 @@ Access the app at `http://localhost:5173`.
 1. **Install Aptos CLI**.
 2. Update **Move.toml** with your wallet address:
 
-    ```bash
-    my_addrx = "0xYOUR_ACCOUNT_ADDRESS"
-    ```
+   ```bash
+   my_addrx = "0xYOUR_ACCOUNT_ADDRESS"
+   ```
 
 3. Initialize Aptos CLI and compile the contract:
 
-    ```bash
-    aptos init
-    aptos move compile
-    aptos move publish
-    ```
+   ```bash
+   aptos init
+   aptos move compile
+   aptos move publish
+   ```
 
 ---
 

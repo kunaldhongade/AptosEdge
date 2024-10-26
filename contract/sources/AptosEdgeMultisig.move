@@ -29,6 +29,7 @@ module my_addrx::AptosEdgeMultisig {
     }
 
     struct MultiSig has key {
+        resource_addr: address,
         signer_cap: SignerCapability,
         admins: vector<address>,
         transactions: table::Table<u64, Transaction>,
@@ -38,11 +39,24 @@ module my_addrx::AptosEdgeMultisig {
 
     public entry fun create_multisig(acc: &signer, admins: vector<address>, confirmationNeeded: u64) {
         let acc_addr = signer::address_of(acc);
-        let (_, resource_signer_cap) = account::create_resource_account(acc, b"SECRET_SEED");
+        let (resource_signer, resource_signer_cap) = account::create_resource_account(acc, b"SECRET_SEED");
         assert!(confirmationNeeded <= vector::length<address>(&admins), E_CONFIRMATION_NOT_VALID);
+
+        let resource_addr = signer::address_of(&resource_signer);
+        
+        coin::register<AptosCoin>(&resource_signer);
+
+        assert!(
+                coin::balance<AptosCoin>(acc_addr) >= 50000000,
+                E_RESOURCE_ACCOUNT_DOES_NOT_HAVE_ENOUGH_MONEY
+        );
+
+        coin::transfer<AptosCoin>(acc, resource_addr, 50000000);  // Initial funding
+
         move_to(acc, MultiSig {
             signer_cap: resource_signer_cap,
             admins: admins,
+            resource_addr: resource_addr,
             transactions: table::new<u64, Transaction>(),
             tx_index: 0,
             confirmationNeeded: confirmationNeeded
@@ -109,7 +123,7 @@ module my_addrx::AptosEdgeMultisig {
             expiry: transaction.expiry,
             confirmation: transaction.confirmation
         });
-}
+    }
 
 
     public entry fun execute_transaction(
@@ -296,4 +310,18 @@ module my_addrx::AptosEdgeMultisig {
             }
         }
     }
+
+    #[view]
+    public fun get_resource_account_balance(multisig_creator: address): u64 acquires MultiSig {
+        let multi_sig = borrow_global<MultiSig>(multisig_creator);
+        coin::balance<AptosCoin>(multi_sig.resource_addr)
+    }
+
+    #[view]
+    public fun get_resource_address(multisig_creator: address): address acquires MultiSig {
+        let multi_sig = borrow_global<MultiSig>(multisig_creator);
+        return multi_sig.resource_addr
+    }
+
+
 }
